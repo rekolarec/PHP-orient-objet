@@ -1,8 +1,10 @@
 <?php 
-   require "php/Model/UsersModel.php"; // Charger le fichier php
-	class UsersController{
+    require "Controller.php";
+	class UsersController extends Controller{
         
         public function addUser(){
+            
+   require "php/Model/UsersModel.php"; // Charger le fichier php
             $redirect = 0; // Define ma variable de redirection
 
             $error = $this->arrayIsEmpty($_POST, array("firstname","lastname","email","password"));
@@ -35,23 +37,7 @@
         }
 
             
-        public function arrayIsEmpty($data = array(), $keyObligatory = array()){
-            if(!is_array($data))
-                return -1;
-            
-            $isOk = false;
-
-            foreach($data as $key => $val){
-                foreach($keyObligatory as $valO)
-                    if($valO == $key)
-                        $isOk = true;
-                if(!$isOk || empty(trim($val))){
-                    return -1;
-                }
-            }
-
-            return 1;
-        }
+       
 
 
         // rajout session utilisateur permet de se connecter

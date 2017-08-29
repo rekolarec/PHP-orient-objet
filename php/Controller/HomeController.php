@@ -1,11 +1,13 @@
 <?php 
-   
-	class HomeController{
+   require "Controller.php";
+	class HomeController extends Controller{
+
+        public function __construct(){
+            parent::__construct();
+        }
         
         public function home(){
-            require "php/Model/itemsModel.php"; // Charger le fichier php
-            $dbItems =new ItemsModel();
-            $itemsHome = $dbItems->listenerItems();
+            $itemsHome = $this->itemsModel->listenerItems();
             include("home.php");
         }
     }

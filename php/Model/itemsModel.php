@@ -84,8 +84,7 @@
             return $this->select("note, commentaire, CONCAT(firstname, ' ' ,lastname) as username", "reviews, clients", "items_iditems = $id AND clients_idclients = idclients");
         }
 
-        public function listenerItem($id)
-        {
+        public function listenerItem($id){
             if(!is_int($id))
             {
                 return -1;
@@ -98,7 +97,7 @@
             );
         }
 
-
+            
         public function listenerItem2($id){
             if(!is_int($id)){
                 return -1;
@@ -106,7 +105,11 @@
             return $this->select("i.*, c.name as categories, p.url, AVG(r.note) as reviewsMoyen","items i, categories c, pictures p, reviews r", "i.`categories_idcategories` = c.idcategories AND i.iditems = p.items_iditems AND r.items_iditems = i.iditems AND i.iditems = ".$id." GROUP BY i.iditems");
         }
 
-    }
+          // CatégorieModel
+          public function listenerCategories(){
+            return $this->select("name", "categories");
+        }
+}
 
     // $test = new ItemsModel();
     // var_dump($test->listenerItems());
